@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import healthRouter from "./routers/health.js";
 import secretsRouter from "./routers/secrets.js";
 import textAiRouter from "./routers/text-ai.js";
+import hermesRouter from "./routers/bots/hermes.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 app.use("/health", healthRouter);
 app.use("/secrets", secretsRouter);
 app.use("/ai", textAiRouter);
+app.use("/bots/hermes", hermesRouter);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
