@@ -6,7 +6,8 @@
     "ai": "^5.0.60",
     "dotenv": "^17.2.3",
     "express": "5.1.0",
-    "morgan": "^1.10.1"
+    "morgan": "^1.10.1",
+    "telegraf": "^4.16.3"
   },
   "scripts": {
     "start": "tsx src/index.ts",
