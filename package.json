@@ -1,0 +1,16 @@
+{
+  "name": "express",
+  "type": "module",
+  "dependencies": {
+    "express": "5.1.0"
+  },
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "tsx watch src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.17",
+    "@types/express": "5.0.0",
+    "typescript": "5.8.3"
+  }
+}
