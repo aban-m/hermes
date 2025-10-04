@@ -2,15 +2,19 @@
   "name": "express",
   "type": "module",
   "dependencies": {
-    "express": "5.1.0"
+    "@openrouter/ai-sdk-provider": "^1.2.0",
+    "ai": "^5.0.60",
+    "dotenv": "^17.2.3",
+    "express": "5.1.0",
+    "morgan": "^1.10.1"
   },
   "scripts": {
     "start": "tsx src/index.ts",
-    "dev": "tsx watch src/index.ts"
+    "dev": "bun run --watch src/index.ts"
   },
   "devDependencies": {
-    "@types/node": "20.11.17",
     "@types/express": "5.0.0",
+    "@types/node": "20.11.17",
     "typescript": "5.8.3"
   }
 }

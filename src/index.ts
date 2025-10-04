@@ -1,11 +1,22 @@
 import express from "express";
-import healthRouter from "./health.js";
+import morgan from "morgan";
+import dotenv from "dotenv";
+import healthRouter from "./routers/health.js";
+import secretsRouter from "./routers/secrets.js";
+import textAiRouter from "./routers/text-ai.js";
+
+dotenv.config();
 
 const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // Parse form data;
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
+app.use((err, _req, res, _next) => {
+  console.error(err);
+  res.status(err.status || 500).json({ error: err.message || "Server error" });
+});
 
 app.get("/", (req, res) => {
   res.send(JSON.stringify({ message: "Hello Express!" }));
@@ -13,6 +24,8 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/health", healthRouter);
+app.use("/secrets", secretsRouter);
+app.use("/ai", textAiRouter);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
