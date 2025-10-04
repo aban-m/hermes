@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
 });
 
 bot.on("message", (ctx) => {
-  ctx.reply("Hello");
+  const text = `\`${ctx.from.id}\``;
+  ctx.reply(text);
 });
 export default router;
