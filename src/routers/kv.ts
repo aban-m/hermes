@@ -13,6 +13,22 @@ router.get("/:key", authMiddleware, async (req, res) => {
   res.send(JSON.stringify(success(value.rows[0].value)));
 });
 
+router.delete("/:key", authMiddleware, async (req, res) => {
+  const { key } = req.params;
+  const result = await sql.query(`DELETE FROM kv WHERE key = $1`, [key]);
+  if (result.rowCount === 0) {
+    return res.status(404).json(failure("Key not found"));
+  }
+  res.send(JSON.stringify(success(null)));
+});
+
+router.get("/", authMiddleware, async (req, res) => {
+  const result = await sql.query<{ key: string; value: string }[]>(
+    `SELECT key, value, updated_at AS timestamp FROM kv`
+  );
+  res.send(JSON.stringify(success(result.rows)));
+});
+
 router.post("/", authMiddleware, async (req, res) => {
   const { key, value } = req.body;
   await sql.query(
