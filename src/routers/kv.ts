@@ -24,7 +24,7 @@ router.delete("/:key", authMiddleware, async (req, res) => {
 
 router.get("/", authMiddleware, async (req, res) => {
   const result = await sql.query<{ key: string; value: string }[]>(
-    `SELECT key, value, updated_at AS timestamp FROM kv`
+    `SELECT key, value, updated_at AS timestamp FROM kv ORDER BY updated_at DESC`
   );
   res.send(JSON.stringify(success(result.rows)));
 });
