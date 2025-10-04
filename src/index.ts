@@ -6,6 +6,7 @@ import secretsRouter from "./routers/secrets.js";
 import textAiRouter from "./routers/text-ai.js";
 import hermesRouter from "./routers/bots/hermes.js";
 import kvRouter from "./routers/kv.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use((err, _req, res, _next) => {
