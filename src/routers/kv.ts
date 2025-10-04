@@ -13,4 +13,13 @@ router.get("/:key", authMiddleware, async (req, res) => {
   res.send(JSON.stringify(success(value.rows[0].value)));
 });
 
+router.post("/", authMiddleware, async (req, res) => {
+  const { key, value } = req.body;
+  await sql.query(
+    `INSERT INTO kv (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = $2`,
+    [key, value]
+  );
+  res.send(JSON.stringify(success(value)));
+});
+
 export default router;
