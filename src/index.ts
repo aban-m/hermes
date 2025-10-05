@@ -7,7 +7,7 @@ import textAiRouter from "./routers/text-ai.js";
 import hermesRouter from "./routers/bots/hermes.js";
 import kvRouter from "./routers/kv.js";
 import cors from "cors";
-
+import cronRouter from "./routers/cron.js";
 dotenv.config();
 
 const app = express();
@@ -32,7 +32,7 @@ app.use("/secrets", secretsRouter);
 app.use("/ai", textAiRouter);
 app.use("/bots/hermes", hermesRouter);
 app.use("/kv", kvRouter);
-
+app.use("/cron", cronRouter);
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
