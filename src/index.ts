@@ -23,7 +23,12 @@ app.use((err, _req, res, _next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send(JSON.stringify({ message: "Hello Express!" }));
+  res.send(JSON.stringify({ greatest: "thrice" }));
+});
+app.get("/trismegistus", (req, res) => {
+  res.send(JSON.stringify({
+  	instance: Math.random()
+  }));
 });
 
 // Routes
@@ -33,6 +38,7 @@ app.use("/ai", textAiRouter);
 app.use("/bots/hermes", hermesRouter);
 app.use("/kv", kvRouter);
 app.use("/cron", cronRouter);
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
